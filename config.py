@@ -121,13 +121,6 @@ class CampaignConfig(BaseModel):
             raise ValueError("ai_rate_per_minute must be > 0")
         return self
 
-    @model_validator(mode="after")
-    def _validate_ai_config(self) -> "CampaignConfig":
-        if self.use_ai and not self.openai_api_key:
-            raise ValueError("openai_api_key is required when use_ai is true")
-        return self
-
-
 class AppConfig(BaseModel):
     model_config = ConfigDict(extra="forbid")
     smtp_servers: List[SMTPConfig]

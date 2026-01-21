@@ -152,6 +152,13 @@ def main() -> int:
     logger = setup_logging(campaign.log_file)
     logger.info("Campaign start", extra={"event": "campaign_start", "context": {"mode": campaign.mode}})
 
+    if campaign.use_ai and not campaign.openai_api_key:
+        logger.error(
+            "OpenAI API key missing; set OPENAI_API_KEY or disable AI with --no-ai",
+            extra={"event": "config_error", "context": {}},
+        )
+        return 1
+
     if campaign.mode == "WARMUP" and not campaign.allowlist_file:
         logger.error(
             "Warmup mode requires --allowlist-file",
