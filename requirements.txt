@@ -1,0 +1,12 @@
+# Production-Grade Email Campaign Sender
+# =====================================
+# Minimal dependencies - most functionality uses Python stdlib
+
+# Optional: Load configuration from .env files
+python-dotenv>=1.0.0
+
+# Optional: AI content generation (can be disabled with --no-ai)
+openai>=1.0.0
+
+# Testing
+pytest>=7.0.0
